@@ -10,9 +10,13 @@ var questionArray = [question.q1, question.q2];
 
 var questionIndex = 0;
 
+var userAnswer;
+
+var correctAnswer;
+
 function init() {
 
-    if (questionIndex <= questionArray.length -1) {
+    if (questionIndex <= questionArray.length - 1) {
 
         $("#question").text(questionArray[questionIndex][0]);
         $("#answer1").text(questionArray[questionIndex][1]);
@@ -65,13 +69,29 @@ function stop() {
 start();
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 
-    $(".answers").on("click", ".answer", function() {
+    $(".answers").on("click", ".answer", function () {
 
-        console.log($(this).attr("value"));
+        userAnswer = parseInt($(this).attr("value"));
 
+        correctAnswer = questionArray[questionIndex][5];
+
+        if (questionIndex <= questionArray.length - 1) {
+            if (userAnswer === correctAnswer) {
+
+                console.log("YAY");
+
+            } else {
+
+                console.log("AWW");
+            }
+
+            questionIndex++;
+
+            init();
+        }
 
     })
 
