@@ -1,3 +1,4 @@
+// Question object
 var question = {
 
     q1: ["What is the only manmade object that is observable from the moon?", "Me", "The Sun", "The Great Wall", "The not so great wall", 3],
@@ -6,14 +7,17 @@ var question = {
 
 }
 
+// Question array
 var questionArray = [question.q1, question.q2];
 
+// Keep track of which question we are on
 var questionIndex = 0;
 
 var userAnswer;
 
 var correctAnswer;
 
+//Function to display current question
 function init() {
 
     if (questionIndex <= questionArray.length - 1) {
@@ -32,9 +36,27 @@ function init() {
 
 }
 
+// Correct Answer function
+
+function displayCorrect() {
+
+    correctAnswer = questionArray[questionIndex][5];
+
+    $("#question").text(questionArray[questionIndex][correctAnswer]);
+
+    $("#answer1").empty();
+    $("#answer2").empty();
+    $("#answer3").empty();
+    $("#answer4").empty();
+
+
+}
+
 
 init();
 
+
+// Timer Code
 var seconds = 30;
 
 var timer;
@@ -69,6 +91,8 @@ function stop() {
 start();
 
 
+
+// User Inputs
 $(document).ready(function () {
 
 
@@ -78,19 +102,39 @@ $(document).ready(function () {
 
         correctAnswer = questionArray[questionIndex][5];
 
+        userAnswer = parseInt($(this).attr("value"));
+
+        correctAnswer = questionArray[questionIndex][5];
+
         if (questionIndex <= questionArray.length - 1) {
+
+            // Correct Answer Display
+            function displayCorrect() {
+
+                $("#question").text(questionArray[questionIndex][correctAnswer]);
+    
+                $("#answer1").empty();
+                $("#answer2").empty();
+                $("#answer3").empty();
+                $("#answer4").empty();
+    
+            }
+
+
             if (userAnswer === correctAnswer) {
 
-                console.log("YAY");
+                alert("YAY");
 
             } else {
 
-                console.log("AWW");
+                alert("AWW");
             }
 
             questionIndex++;
 
-            init();
+            displayCorrect();
+
+            setTimeout(init, 3000);
         }
 
     })
