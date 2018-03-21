@@ -26,14 +26,21 @@ function displayQuestion() {
     $(".container").append("<div class: 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
     
     for (var i = 1; i < 5; i++) {
-        $(".container").append("<input type='radio' value= '" + i + "'>" + questionArray[questionIndex][i]);
-        $("input").attr("name", questionIndex);
+        $(".container").append("<input type='radio' name='" + questionIndex + "' value= '" + i + "'>" + questionArray[questionIndex][i]);
         $(this.input).attr("value", i);
-        console.log(i);
     }
 }
 
-displayQuestion();
+for (var i = 0; i < 5; i++) {
+
+    displayQuestion();
+    questionIndex++;
+
+
+}
+
+
+
 
 // Timer Code
 var seconds = 30;
@@ -68,3 +75,9 @@ function stop() {
 }
 
 start();
+
+$(document).ready(function() {
+
+
+    
+})
