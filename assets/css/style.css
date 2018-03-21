@@ -1,3 +1,21 @@
 .wrapper {
     text-align: center;
 }
+
+.question {
+
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 25px;
+
+}
+
+.container {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+input[type="radio"] {
+    margin-right: 3px;
+    margin-left: 12px;
+}

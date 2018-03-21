@@ -24,22 +24,20 @@ var done = false;
 
 // function to populate questions from question array
 function displayQuestion() {
-    $(".container").append("<div class: 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
+    $(".container").append("<div class= 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
 
     for (var i = 1; i < 5; i++) {
         $(".container").append("<input type='radio' name='" + questionIndex + "' value= '" + i + "'>" + questionArray[questionIndex][i]);
         $(this.input).attr("value", i);
     }
 }
+
 // Populate all of the questions
 for (var i = 0; i < 5; i++) {
 
     displayQuestion();
     questionIndex++;
-
-
 }
-
 
 // Function at the end that will tally the score
 function tallyScore() {
@@ -79,10 +77,12 @@ function tallyScore() {
     done = !done;
 }
 
+// Reset Game without refreshing page
 function reset() {
 
     $(".container").empty();
 
+    // Reset Stats
     seconds = 31
     questionIndex = 0;
     correctAnswer = 0;
@@ -144,7 +144,6 @@ start();
 // Done button calls tally score button
 $(document).ready(function () {
 
-
     $("#done").click(function () {
 
         if (!done) {
@@ -156,8 +155,5 @@ $(document).ready(function () {
             reset();
 
         }
-
-
-
     })
 })
