@@ -123,6 +123,17 @@ function countDown() {
 
     $("#timer").text("Time Remaining: " + seconds + " Seconds");
 
+
+    if (seconds > 10) {
+
+        $(".panel").css("color", "forestgreen");
+
+    } else {
+
+        $(".panel").css("color", "crimson");
+
+    }
+
     if (seconds === 0) {
 
         stop();
