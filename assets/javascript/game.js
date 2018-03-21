@@ -38,6 +38,34 @@ for (var i = 0; i < 5; i++) {
 
 }
 
+function tallyScore() {
+
+    questionIndex = 0;
+
+        for (var i = 0; i < 5; i++) {
+
+            var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
+
+            if(!$("input[name=" + i + "]:checked").attr("value")) {
+                uncomplete++;
+
+            } else if (check === questionArray[questionIndex][5])
+            
+            {   correctAnswer++;
+
+            } else {
+
+                incorrectAnswer++;
+
+            }
+
+            questionIndex++;
+        }
+        console.log(correctAnswer);
+        console.log(incorrectAnswer);
+        console.log(uncomplete);
+}
+
 
 
 
@@ -80,22 +108,8 @@ $(document).ready(function () {
 
     $("#done").click(function () {
 
-        questionIndex = 0;
+        tallyScore();
 
-        for (var i = 0; i < 5; i++) {
 
-            var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
-
-            if (check === questionArray[questionIndex][5]) {
-
-                correctAnswer++;
-            } else {
-                incorrectAnswer++;
-            }
-            questionIndex++;
-        }
-
-        console.log(correctAnswer);
-        console.log(incorrectAnswer);
     })
 })
