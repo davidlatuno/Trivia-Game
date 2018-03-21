@@ -61,9 +61,6 @@ function tallyScore() {
 
             questionIndex++;
         }
-        console.log(correctAnswer);
-        console.log(incorrectAnswer);
-        console.log(uncomplete);
 }
 
 
