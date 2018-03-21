@@ -93,7 +93,7 @@ function reset() {
     $(".container").empty();
 
     // Reset Stats
-    seconds = 61
+    seconds = 121
     questionIndex = 0;
     correctAnswer = 0;
     incorrectAnswer = 0;
@@ -117,7 +117,7 @@ function reset() {
 
 
 // Timer Code
-var seconds = 61;
+var seconds = 121;
 
 var timer;
 
