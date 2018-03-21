@@ -15,12 +15,13 @@ var question = {
 // Question array
 var questionArray = [question.q1, question.q2, question.q3, question.q4, question.q5];
 
+// Question index and score variables
 var questionIndex = 0;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var uncomplete = 0;
 
-
+// function to populate questions from question array
 function displayQuestion() {
     $(".container").append("<div class: 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
 
@@ -29,7 +30,7 @@ function displayQuestion() {
         $(this.input).attr("value", i);
     }
 }
-
+// Populate all of the questions
 for (var i = 0; i < 5; i++) {
 
     displayQuestion();
@@ -38,10 +39,16 @@ for (var i = 0; i < 5; i++) {
 
 }
 
+
+// Function at the end that will tally the score
 function tallyScore() {
+
+    // Stops timer
+    stop();
 
     questionIndex = 0;
 
+        // Checks each question if answered and if answer is correct
         for (var i = 0; i < 5; i++) {
 
             var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
@@ -61,6 +68,12 @@ function tallyScore() {
 
             questionIndex++;
         }
+
+        // Print stats to html
+        $(".container").empty();
+        $(".container").append("<div class='score'>Correct Answers: " + correctAnswer +"</div>");
+        $(".container").append("<div class='score'>Incorrect Answers: " + incorrectAnswer +"</div>");
+        $(".container").append("<div class='score'>Uncomplete Answers: " + uncomplete +"</div>");
 }
 
 
@@ -87,7 +100,7 @@ function countDown() {
 
         stop();
 
-        alert("TIME UP");
+        tallyScore();
 
     }
 }
@@ -100,6 +113,8 @@ function stop() {
 
 start();
 
+
+// Done button calls tally score button
 $(document).ready(function () {
 
 
