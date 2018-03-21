@@ -3,9 +3,9 @@ var question = {
 
     q1: ["What is the only manmade object that is observable from the moon?", "Me", "The Sun", "The Great Wall", "The not so great wall", 3],
 
-    q2: ["What is the capital of Australia", "Me", "The Sun", "The Great Wall", "Canberra", 4],
+    q2: ["What is the capital of Australia?", "Me", "The Sun", "The Great Wall", "Canberra", 4],
 
-    q3: ["Who was the mad monk of Russian history", "Aladin", "Me", "Ted", "Rasputin", 4],
+    q3: ["Who was the mad monk of Russian history?", "Aladin", "Me", "Ted", "Rasputin", 4],
 
     q4: ["What is the largest fish in the ocean?", "Me", "Nemo", "Whale Shark", "Whale", 3],
 
@@ -16,15 +16,14 @@ var question = {
 var questionArray = [question.q1, question.q2, question.q3, question.q4, question.q5];
 
 var questionIndex = 0;
-
-var userAnswer;
-
-var correctAnswer;
+var correctAnswer = 0;
+var incorrectAnswer = 0;
+var uncomplete = 0;
 
 
 function displayQuestion() {
     $(".container").append("<div class: 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
-    
+
     for (var i = 1; i < 5; i++) {
         $(".container").append("<input type='radio' name='" + questionIndex + "' value= '" + i + "'>" + questionArray[questionIndex][i]);
         $(this.input).attr("value", i);
@@ -76,8 +75,27 @@ function stop() {
 
 start();
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 
-    
+    $("#done").click(function () {
+
+        questionIndex = 0;
+
+        for (var i = 0; i < 5; i++) {
+
+            var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
+
+            if (check === questionArray[questionIndex][5]) {
+
+                correctAnswer++;
+            } else {
+                incorrectAnswer++;
+            }
+            questionIndex++;
+        }
+
+        console.log(correctAnswer);
+        console.log(incorrectAnswer);
+    })
 })
