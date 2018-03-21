@@ -3,17 +3,28 @@ var question = {
 
     q1: ["What is the only manmade object that is observable from the moon?", "Me", "The Sun", "The Great Wall", "The not so great wall", 3],
 
-    q2: ["What is the capital of Australia?", "Me", "The Sun", "The Great Wall", "Canberra", 4],
+    q2: ["What is the capital of Australia?", "Melbourne", "Sydney", "Cairns", "Canberra", 4],
 
-    q3: ["Who was the mad monk of Russian history?", "Aladin", "Me", "Ted", "Rasputin", 4],
+    q3: ["Name the world's biggest Island", "Hawaii", "Japan", "Greenland", "Philippines", 3],
 
-    q4: ["What is the largest fish in the ocean?", "Me", "Nemo", "Whale Shark", "Whale", 3],
+    q4: ["Who Invented the rabies vaccination?", "Louis Pasteur", "Marie Curie", "Albert Einstein", "Nikola Tesla", 1],
 
-    q5: ["Which artist painted a mustache and goatee on the Mona Lisa?", "Monet", "Manet", "Cordon", "Duchamp", 4]
+    q5: ["Which artist painted a mustache and goatee on the Mona Lisa?", "Monet", "Manet", "Cordon", "Duchamp", 4],
+
+    q6: ["Give the alternative name for a Mountain Ash tree", "Jabuticaba", "Rowan", "Dragon Blood Tree", "Angel Oak", 2],
+
+    q7: ["Name the country where you would find the Cresta Run", "Switzerland", "India", "Denmark", "Spain", 1],
+
+    q8: ["What is someone who shoes horses called?", "Aptycock", "Clomph", "Farrier", "Hansper", 3],
+
+    q9: ["What is a group of owls called?", "A hoot", "A parliament", "A seer", "A flock", 2],
+
+    q10: ["Which U.S. president made the first presidential radio broadcast?", "Warren G. Harding", "FDR", "Calvin Coolidge", "Herbert Hoover", 3]
+
 }
 
 // Question array
-var questionArray = [question.q1, question.q2, question.q3, question.q4, question.q5];
+var questionArray = [question.q1, question.q2, question.q3, question.q4, question.q5, question.q6, question.q7, question.q8, question.q9, question.q10];
 
 // Question index and score variables
 var questionIndex = 0;
@@ -27,13 +38,12 @@ function displayQuestion() {
     $(".container").append("<div class= 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
 
     for (var i = 1; i < 5; i++) {
-        $(".container").append("<input type='radio' name='" + questionIndex + "' value= '" + i + "'>" + questionArray[questionIndex][i]);
-        $(this.input).attr("value", i);
+        $(".container").append("<label><input type='radio' name='" + questionIndex + "' value= '" + i + "'>" + questionArray[questionIndex][i] + "</label>");
     }
 }
 
 // Populate all of the questions
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 10; i++) {
 
     displayQuestion();
     questionIndex++;
@@ -48,7 +58,7 @@ function tallyScore() {
     questionIndex = 0;
 
     // Checks each question if answered and if answer is correct
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
 
         var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
 
@@ -83,14 +93,14 @@ function reset() {
     $(".container").empty();
 
     // Reset Stats
-    seconds = 31
+    seconds = 61
     questionIndex = 0;
     correctAnswer = 0;
     incorrectAnswer = 0;
     uncomplete = 0;
 
     // Populate all of the questions
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
 
         displayQuestion();
         questionIndex++;
@@ -107,7 +117,7 @@ function reset() {
 
 
 // Timer Code
-var seconds = 31;
+var seconds = 61;
 
 var timer;
 
@@ -126,11 +136,11 @@ function countDown() {
 
     if (seconds > 10) {
 
-        $(".panel").css("color", "forestgreen");
+        $("#timer").css("color", "forestgreen");
 
     } else {
 
-        $(".panel").css("color", "crimson");
+        $("#timer").css("color", "crimson");
 
     }
 
