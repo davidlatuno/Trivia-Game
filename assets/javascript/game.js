@@ -83,6 +83,7 @@ function reset() {
 
     $(".container").empty();
 
+    seconds = 31
     questionIndex = 0;
     correctAnswer = 0;
     incorrectAnswer = 0;
@@ -98,13 +99,15 @@ function reset() {
     $("#done").html("<h1>Done</h1>");
 
     done = !done;
+
+    start();
 }
 
 
 
 
 // Timer Code
-var seconds = 30;
+var seconds = 31;
 
 var timer;
 
@@ -116,9 +119,9 @@ function start() {
 
 function countDown() {
 
-    $("#timer").text("Time Remaining: " + seconds + " Seconds");
-
     seconds--;
+
+    $("#timer").text("Time Remaining: " + seconds + " Seconds");
 
     if (seconds === 0) {
 
