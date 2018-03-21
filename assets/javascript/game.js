@@ -20,6 +20,7 @@ var questionIndex = 0;
 var correctAnswer = 0;
 var incorrectAnswer = 0;
 var uncomplete = 0;
+var done = false;
 
 // function to populate questions from question array
 function displayQuestion() {
@@ -48,32 +49,55 @@ function tallyScore() {
 
     questionIndex = 0;
 
-        // Checks each question if answered and if answer is correct
-        for (var i = 0; i < 5; i++) {
+    // Checks each question if answered and if answer is correct
+    for (var i = 0; i < 5; i++) {
 
-            var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
+        var check = parseInt($("input[name=" + i + "]:checked").attr("value"));
 
-            if(!$("input[name=" + i + "]:checked").attr("value")) {
-                uncomplete++;
+        if (!$("input[name=" + i + "]:checked").attr("value")) {
+            uncomplete++;
 
-            } else if (check === questionArray[questionIndex][5])
-            
-            {   correctAnswer++;
+        } else if (check === questionArray[questionIndex][5]) {
+            correctAnswer++;
 
-            } else {
+        } else {
 
-                incorrectAnswer++;
+            incorrectAnswer++;
 
-            }
-
-            questionIndex++;
         }
 
-        // Print stats to html
-        $(".container").empty();
-        $(".container").append("<div class='score'>Correct Answers: " + correctAnswer +"</div>");
-        $(".container").append("<div class='score'>Incorrect Answers: " + incorrectAnswer +"</div>");
-        $(".container").append("<div class='score'>Uncomplete Answers: " + uncomplete +"</div>");
+        questionIndex++;
+    }
+
+    // Print stats to html
+    $(".container").empty();
+    $(".container").append("<div class='score'>Correct Answers: " + correctAnswer + "</div>");
+    $(".container").append("<div class='score'>Incorrect Answers: " + incorrectAnswer + "</div>");
+    $(".container").append("<div class='score'>Uncomplete Answers: " + uncomplete + "</div>");
+    $("#done").html("<h1>Reset</h1>");
+
+    done = !done;
+}
+
+function reset() {
+
+    $(".container").empty();
+
+    questionIndex = 0;
+    correctAnswer = 0;
+    incorrectAnswer = 0;
+    uncomplete = 0;
+
+    // Populate all of the questions
+    for (var i = 0; i < 5; i++) {
+
+        displayQuestion();
+        questionIndex++;
+    }
+
+    $("#done").html("<h1>Done</h1>");
+
+    done = !done;
 }
 
 
@@ -120,7 +144,16 @@ $(document).ready(function () {
 
     $("#done").click(function () {
 
-        tallyScore();
+        if (!done) {
+
+            tallyScore();
+
+        } else if (done) {
+
+            reset();
+
+        }
+
 
 
     })
