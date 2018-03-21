@@ -5,56 +5,35 @@ var question = {
 
     q2: ["What is the capital of Australia", "Me", "The Sun", "The Great Wall", "Canberra", 4],
 
+    q3: ["Who was the mad monk of Russian history", "Aladin", "Me", "Ted", "Rasputin", 4],
+
+    q4: ["What is the largest fish in the ocean?", "Me", "Nemo", "Whale Shark", "Whale", 3],
+
+    q5: ["Which artist painted a mustache and goatee on the Mona Lisa?", "Monet", "Manet", "Cordon", "Duchamp", 4]
 }
 
 // Question array
-var questionArray = [question.q1, question.q2];
+var questionArray = [question.q1, question.q2, question.q3, question.q4, question.q5];
 
-// Keep track of which question we are on
 var questionIndex = 0;
 
 var userAnswer;
 
 var correctAnswer;
 
-//Function to display current question
-function init() {
 
-    if (questionIndex <= questionArray.length - 1) {
-
-        $("#question").text(questionArray[questionIndex][0]);
-        $("#answer1").text(questionArray[questionIndex][1]);
-        $("#answer2").text(questionArray[questionIndex][2]);
-        $("#answer3").text(questionArray[questionIndex][3]);
-        $("#answer4").text(questionArray[questionIndex][4]);
-
-    } else {
-
-        $("#question").text("Game Over");
-
+function displayQuestion() {
+    $(".container").append("<div class: 'question Q" + questionIndex + "'>" + questionArray[questionIndex][0] + "</div>");
+    
+    for (var i = 1; i < 5; i++) {
+        $(".container").append("<input type='radio' value= '" + i + "'>" + questionArray[questionIndex][i]);
+        $("input").attr("name", questionIndex);
+        $(this.input).attr("value", i);
+        console.log(i);
     }
-
 }
 
-// Correct Answer function
-
-function displayCorrect() {
-
-    correctAnswer = questionArray[questionIndex][5];
-
-    $("#question").text(questionArray[questionIndex][correctAnswer]);
-
-    $("#answer1").empty();
-    $("#answer2").empty();
-    $("#answer3").empty();
-    $("#answer4").empty();
-
-
-}
-
-
-init();
-
+displayQuestion();
 
 // Timer Code
 var seconds = 30;
@@ -89,56 +68,3 @@ function stop() {
 }
 
 start();
-
-
-
-// User Inputs
-$(document).ready(function () {
-
-
-    $(".answers").on("click", ".answer", function () {
-
-        userAnswer = parseInt($(this).attr("value"));
-
-        correctAnswer = questionArray[questionIndex][5];
-
-        userAnswer = parseInt($(this).attr("value"));
-
-        correctAnswer = questionArray[questionIndex][5];
-
-        if (questionIndex <= questionArray.length - 1) {
-
-            // Correct Answer Display
-            function displayCorrect() {
-
-                $("#question").text(questionArray[questionIndex][correctAnswer]);
-    
-                $("#answer1").empty();
-                $("#answer2").empty();
-                $("#answer3").empty();
-                $("#answer4").empty();
-    
-            }
-
-
-            if (userAnswer === correctAnswer) {
-
-                alert("YAY");
-
-            } else {
-
-                alert("AWW");
-            }
-
-            questionIndex++;
-
-            displayCorrect();
-
-            setTimeout(init, 3000);
-        }
-
-    })
-
-
-
-})
